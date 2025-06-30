@@ -1,0 +1,30 @@
+pipeline:
+  name: ZD-87117
+  identifier: ZD87117
+  projectIdentifier: BharatLearning
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: repro
+        identifier: repro
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: echo "test"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
