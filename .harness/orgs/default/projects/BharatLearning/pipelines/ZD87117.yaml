@@ -27,7 +27,7 @@ pipeline:
                     environmentVariables:
                       - name: featurebranch
                         type: String
-                        value: ""
+                        value: <+input>
                     outputVariables: []
                   timeout: 10m
         tags: {}
