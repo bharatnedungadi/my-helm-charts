@@ -33,4 +33,22 @@ pipeline:
                         value: <+input>.default(false)
                     outputVariables: []
                   timeout: 10m
+              - step:
+                  type: ShellScript
+                  name: Notify_On_Failure_If_Cron
+                  identifier: Notify_On_Failure_If_Cron
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: |
+                          echo "Notifying: This scheduled run failed!"
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+                  when:
+                    stageStatus: Failure
+                    condition: <+pipeline.variables.IS_CRON_RUN> == "true"
         tags: {}
