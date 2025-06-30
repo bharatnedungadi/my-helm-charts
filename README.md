@@ -1,4 +1,4 @@
 # my-helm-charts
 my-helm-charts
 checking trigger
-test-trigger
+test
