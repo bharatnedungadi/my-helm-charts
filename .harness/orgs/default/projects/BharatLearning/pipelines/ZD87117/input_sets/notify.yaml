@@ -1,0 +1,14 @@
+inputSet:
+  name: notify
+  identifier: notify
+  orgIdentifier: default
+  projectIdentifier: BharatLearning
+  pipeline:
+    identifier: ZD87117
+    variables:
+      - name: featurebranch
+        type: String
+        value: feature1
+      - name: IS_CRON_RUN
+        type: String
+        value: "true"
