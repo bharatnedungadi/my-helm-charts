@@ -24,7 +24,10 @@ pipeline:
                       type: Inline
                       spec:
                         script: echo "test"
-                    environmentVariables: []
+                    environmentVariables:
+                      - name: featurebranch
+                        type: String
+                        value: ""
                     outputVariables: []
                   timeout: 10m
         tags: {}
