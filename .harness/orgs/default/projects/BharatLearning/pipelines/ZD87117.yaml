@@ -4,6 +4,13 @@ pipeline:
   projectIdentifier: BharatLearning
   orgIdentifier: default
   tags: {}
+  variables:
+    - name: featurebranch
+      type: String
+      value: <+input>
+    - name: IS_CRON_RUN
+      type: String
+      value: <+input>.default(false)
   stages:
     - stage:
         name: repro
@@ -24,13 +31,7 @@ pipeline:
                       type: Inline
                       spec:
                         script: echo "test"
-                    environmentVariables:
-                      - name: featurebranch
-                        type: String
-                        value: <+input>
-                      - name: IS_CRON_RUN
-                        type: String
-                        value: <+input>.default(false)
+                    environmentVariables: []
                     outputVariables: []
                   timeout: 10m
               - step:
@@ -51,4 +52,3 @@ pipeline:
                   when:
                     stageStatus: Failure
                     condition: <+pipeline.variables.IS_CRON_RUN> == "true"
-        tags: {}
