@@ -28,6 +28,9 @@ pipeline:
                       - name: featurebranch
                         type: String
                         value: <+input>
+                      - name: IS_CRON_RUN
+                        type: String
+                        value: <+input>.default(false)
                     outputVariables: []
                   timeout: 10m
         tags: {}
