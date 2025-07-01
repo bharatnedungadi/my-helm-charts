@@ -48,4 +48,4 @@ pipeline:
                   timeout: 10m
                   when:
                     stageStatus: All
-                    condition: <+pipeline.status> == "Failed" && (<+trigger.identifier> == "cron")
+                    condition: <+pipeline.status> == "Failed" && <+pipeline.variables.IS_CRON_RUN> == "true"
