@@ -54,3 +54,16 @@ pipeline:
                   when:
                     stageStatus: Failure
                     condition: <+pipeline.variables.IS_CRON_RUN> == "true"
+              - step:
+                  type: Email
+                  name: Email_On_Pipeline_Failure_From_Cron
+                  identifier: Email_On_Pipeline_Failure_From_Cron
+                  spec:
+                    to: bharat.nedungadi@harness.io
+                    cc: ""
+                    subject: Pipeline Failed (Triggered by Cron)
+                    body: The pipeline failed.
+                  timeout: 10m
+                  when:
+                    stageStatus: All
+                    condition: <+pipeline.status> == "Failed" && <+trigger.identifier> == "cron"
