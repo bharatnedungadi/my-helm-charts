@@ -1,0 +1,51 @@
+pipeline:
+  name: ZD-87117
+  identifier: ZD87117
+  projectIdentifier: BharatLearning
+  orgIdentifier: default
+  tags: {}
+  variables:
+    - name: featurebranch
+      type: String
+      value: <+input>
+    - name: IS_CRON_RUN
+      type: String
+      value: <+input>.default(false)
+  stages:
+    - stage:
+        name: repro
+        identifier: repro
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          echo "test"
+                          exit 1
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+              - step:
+                  type: Email
+                  name: Email_On_Pipeline_Failure_From_Cron
+                  identifier: Email_On_Pipeline_Failure_From_Cron
+                  spec:
+                    to: bharat.nedungadi@harness.io
+                    cc: ""
+                    subject: Pipeline Failed (Triggered by Cron)
+                    body: The pipeline failed.
+                  timeout: 10m
+                  when:
+                    stageStatus: Failure
+                    condition: <+pipeline.variables.IS_CRON_RUN> == "true"

@@ -1,0 +1,22 @@
+inputSet:
+  name: test1
+  identifier: test1
+  orgIdentifier: default
+  projectIdentifier: BharatLearning
+  pipeline:
+    identifier: ZD87117
+    stages:
+      - stage:
+          identifier: repro
+          type: Custom
+          spec:
+            execution:
+              steps:
+                - step:
+                    identifier: ShellScript_1
+                    type: ShellScript
+                    spec:
+                      environmentVariables:
+                        - name: featurebranch
+                          type: String
+                          value: feature1
